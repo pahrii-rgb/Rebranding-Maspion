@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maspion Group - Redesigned Corporate Website</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Inter & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maspion: {
+                            50: '#fef2f2',
+                            100: '#ffe1e1',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                        },
+                        dark: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(185, 28, 28, 0.85) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .hover-lift {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #b91c1c;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        /* Hide scrollbar for category filter on mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Custom Dual Range Slider Styling */
+        input[type="range"]::-webkit-slider-thumb {
+            pointer-events: auto;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ef4444;
+            cursor: pointer;
+            -webkit-appearance: none;
+            box-shadow: 0 0 0 2px #1e293b;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-maspion-700 selection:text-white">
+
+    <!-- Top Utility Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-building text-maspion-500"></i> Kantor Pusat: Surabaya, Indonesia</span>
+                <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-envelope text-maspion-500"></i> info@maspion.com</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#investor" class="hover:text-white transition-colors">Hubungan Investor</a>
+                <span class="text-slate-700">|</span>
+                <a href="#karir" class="hover:text-white transition-colors">Karir</a>
+                <span class="text-slate-700">|</span>
+                <!-- Language Selector -->
+                <div class="flex items-center bg-slate-800 rounded-full p-0.5 border border-slate-700">
+                    <button id="lang-id" onclick="switchLanguage('id')" class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-maspion-700 text-white transition-all">ID</button>
+                    <button id="lang-en" onclick="switchLanguage('en')" class="px-2.5 py-0.5 text-[11px] font-semibold rounded-full text-slate-400 hover:text-white transition-all">EN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="https://scontent.fsub8-1.fna.fbcdn.net/v/t39.30808-6/304844977_542085324587725_4138240091697835485_n.jpg?stp=dst-jpg_tt6&cstp=mx500x500&ctp=s500x500&_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=1pdzFGAqejYQ7kNvwGLuKWr&_nc_oc=Adp9MQGAXb1VhJo0_r-mAuGAYz33OHEyzKLhXoLdfiPXpCCzXHz-EELQTaMOB3zwcJE&_nc_zt=23&_nc_ht=scontent.fsub8-1.fna&_nc_gid=7p13zRv48lSUKE__0TQ9aQ&_nc_ss=7b289&oh=00_AQKswXJhkjG_u-yRiL-B4JCEZeX2Iiu7y8eYs6oPLgp2Bg&oe=6AB18676" class="h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                    <div class="flex flex-col">
+                        <span class="font-heading font-extrabold text-xl text-slate-900 tracking-tight leading-none group-hover:text-maspion-700 transition-colors">MASPION</span>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase mt-0.5">GROUP INDONESIA</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center gap-8 font-medium text-slate-700 text-sm">
+                    <a href="#tentang" class="nav-link hover:text-maspion-700 transition-colors" data-i18n="nav_about">Tentang Kami</a>
+                    <a href="#ekosistem" class="nav-link hover:text-maspion-700 transition-colors" data-i18n="nav_ecosystem">Ekosistem Bisnis</a>
+                    <a href="#merek" class="nav-link hover:text-maspion-700 transition-colors" data-i18n="nav_brands">Merek Utama</a>
+                    <a href="#berita" class="nav-link hover:text-maspion-700 transition-colors" data-i18n="nav_news">Berita & Media</a>
+                    <a href="#kontak" class="nav-link hover:text-maspion-700 transition-colors" data-i18n="nav_contact">Hubungi Kami</a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <button onclick="toggleSearchModal()" class="p-2.5 text-slate-600 hover:text-maspion-700 hover:bg-slate-100 rounded-full transition-all" title="Cari Anak Perusahaan">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                    <a href="#ekosistem" class="bg-maspion-700 hover:bg-maspion-800 text-white px-5 py-2.5 rounded-lg font-semibold text-sm shadow-md hover:shadow-lg transition-all" data-i18n="nav_cta">
+                        Eksplor Perusahaan
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden items-center gap-2">
+                    <button onclick="toggleSearchModal()" class="p-2 text-slate-600 hover:text-maspion-700 rounded-lg">
+                        <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                    </button>
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 text-slate-700 hover:text-maspion-700 rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#tentang" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-maspion-700" data-i18n="nav_about">Tentang Kami</a>
+            <a href="#ekosistem" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-maspion-700" data-i18n="nav_ecosystem">Ekosistem Bisnis</a>
+            <a href="#merek" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-maspion-700" data-i18n="nav_brands">Merek Utama</a>
+            <a href="#berita" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-maspion-700" data-i18n="nav_news">Berita & Media</a>
+            <a href="#kontak" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium hover:text-maspion-700" data-i18n="nav_contact">Hubungi Kami</a>
+            <div class="pt-2">
+                <a href="#ekosistem" onclick="toggleMobileMenu()" class="block text-center bg-maspion-700 text-white py-3 rounded-lg font-semibold text-sm shadow" data-i18n="nav_cta">Eksplor Perusahaan</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-slate-900 text-white overflow-hidden min-h-[580px] flex items-center">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=80" alt="Maspion Manufacturing" class="w-full h-full object-cover opacity-25">
+            <div class="absolute inset-0 hero"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+            <div class="max-w-3xl">
+                <!-- Slogan Badge -->
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-maspion-100 mb-6 shadow-inner">
+                    <i class="fa-solid fa-heart text-maspion-500 animate-pulse"></i>
+                    <span data-i18n="hero_badge">Slogan Kebanggaan Indonesia</span>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6 font-heading">
+                    "<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-300 to-white" data-i18n="hero_title_quote">Cintailah Produk-Produk</span> Indonesia"
+                </h1>
+                
+                <p class="text-slate-200 text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 max-w-2xl" data-i18n="hero_subtitle">
+                    Selama lebih dari lima dekade, Maspion Group terus berinovasi memajukan industri manufaktur, perdagangan, properti, dan jasa keuangan nasional untuk kesejahteraan masyarakat Indonesia.
+                </p>
+
+                <!-- Hero CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="#ekosistem" class="bg-maspion-600 hover:bg-maspion-700 text-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base shadow-lg shadow-maspion-900/50 hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                        <span data-i18n="hero_btn_explore">Jelajahi Unit Bisnis</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#tentang" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base transition-all">
+                        <span data-i18n="hero_btn_about">Tentang Grup</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Bottom Curve -->
+        <div class="absolute bottom-0 left-0 right-0 h-10 bg-slate-50 [clip-path:polygon(0_100%,100%_100%,100%_0)]"></div>
+    </section>
+
+    <!-- Key Statistics Bar -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Stat Item 1 -->
+            <div class="glass-card p-6 rounded-2xl shadow-md flex items-center gap-5 border-l-4 border-l-maspion-600">
+                <div class="w-14 h-14 bg-maspion-50 rounded-xl flex items-center justify-center text-maspion-700 text-2xl flex-shrink-0">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">50+ <span class="text-maspion-600">Tahun</span></h3>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500" data-i18n="stat_1">Pengalaman Industri</p>
+                </div>
+            </div>
+
+            <!-- Stat Item 2 -->
+            <div class="glass-card p-6 rounded-2xl shadow-md flex items-center gap-5 border-l-4 border-l-slate-800">
+                <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-slate-800 text-2xl flex-shrink-0">
+                    <i class="fa-solid fa-sitemap"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">25+</h3>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500" data-i18n="stat_2">Anak Perusahaan Strategic</p>
+                </div>
+            </div>
+
+            <!-- Stat Item 3 -->
+            <div class="glass-card p-6 rounded-2xl shadow-md flex items-center gap-5 border-l-4 border-l-maspion-600">
+                <div class="w-14 h-14 bg-maspion-50 rounded-xl flex items-center justify-center text-maspion-700 text-2xl flex-shrink-0">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">30.000+</h3>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500" data-i18n="stat_3">Tenaga Kerja Profesional</p>
+                </div>
+            </div>
+
+            <!-- Stat Item 4 -->
+            <div class="glass-card p-6 rounded-2xl shadow-md flex items-center gap-5 border-l-4 border-l-slate-800">
+                <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center text-slate-800 text-2xl flex-shrink-0">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">50+</h3>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500" data-i18n="stat_4">Negara Tujuan Ekspor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Ecosystem Filterable Section -->
+    <section id="ekosistem" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-maspion-700 font-bold text-sm tracking-wider uppercase bg-maspion-50 px-3.5 py-1 rounded-full" data-i18n="section_eco_tag">Diversifikasi Bisnis</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 font-heading" data-i18n="section_eco_title">Ekosistem Perusahaan Maspion</h2>
+            <p class="text-slate-600 mt-3 text-base" data-i18n="section_eco_subtitle">
+                Temukan unit bisnis dan anak perusahaan Maspion Group yang beroperasi secara terintegrasi di berbagai sektor strategis.
+            </p>
+        </div>
+
+        <!-- Category Filter & Search Bar Container -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+            <!-- Category Filter Buttons -->
+            <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto no-scrollbar pb-2 md:pb-0">
+                <button onclick="filterCompanies('all')" class="filter-btn active bg-maspion-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap shadow-sm transition-all" data-cat="all" data-i18n="cat_all">
+                    Semua Sektor (25+)
+                </button>
+                <button onclick="filterCompanies('consumer')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap border border-slate-200 transition-all" data-cat="consumer" data-i18n="cat_consumer">
+                    Konsumen & Rumah Tangga
+                </button>
+                <button onclick="filterCompanies('industry')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap border border-slate-200 transition-all" data-cat="industry" data-i18n="cat_industry">
+                    Industri & Logistik
+                </button>
+                <button onclick="filterCompanies('property')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap border border-slate-200 transition-all" data-cat="property" data-i18n="cat_property">
+                    Properti & Infrastruktur
+                </button>
+                <button onclick="filterCompanies('finance')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap border border-slate-200 transition-all" data-cat="finance" data-i18n="cat_finance">
+                    Jasa Keuangan
+                </button>
+            </div>
+
+            <!-- Quick Inline Filter Input -->
+            <div class="relative w-full md:w-72">
+                <i class="fa-solid fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" id="ecosystem-search" onkeyup="searchCompaniesInline()" placeholder="Cari nama PT..." class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-maspion-600 focus:border-transparent transition-all">
+            </div>
+        </div>
+
+        <!-- Companies Grid -->
+        <div id="company-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Injection from JS -->
+        </div>
+    </section>
+
+    <!-- Major Brands Showcase & Product Catalog Section -->
+    <section id="merek" class="py-16 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-maspion-500 font-bold text-sm tracking-wider uppercase" data-i18n="brand_tag">Merek Unggulan</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 font-heading" data-i18n="brand_title">Brand Kepercayaan Keluarga</h2>
+                </div>
+                <p class="text-slate-400 text-sm sm:text-base max-w-md mt-4 md:mt-0" data-i18n="brand_desc">
+                    Produk berkualitas tinggi yang dirancang untuk kebutuhan sehari-hari rumah tangga, industri, dan bisnis.
+                </p>
+            </div>
+
+            <!-- Brands Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <!-- Brand Card 1 -->
+                <div onclick="selectBrandFilter('Maspion')" class="brand-filter-card bg-slate-800/80 border border-slate-700/60 p-6 rounded-2xl flex flex-col items-center justify-center text-center hover:border-maspion-500 hover:bg-slate-800 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-maspion-700/20 text-maspion-500 flex items-center justify-center text-2xl font-black mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-plug"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">Maspion</h4>
+                    <span class="text-xs text-slate-400 mt-1">Electronics & Plastics</span>
+                </div>
+
+                <!-- Brand Card 2 -->
+                <div onclick="selectBrandFilter('MAXIM')" class="brand-filter-card bg-slate-800/80 border border-slate-700/60 p-6 rounded-2xl flex flex-col items-center justify-center text-center hover:border-maspion-500 hover:bg-slate-800 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl font-black mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">MAXIM</h4>
+                    <span class="text-xs text-slate-400 mt-1">Cookware & Kitchen</span>
+                </div>
+
+                <!-- Brand Card 3 -->
+                <div onclick="selectBrandFilter('UCHIDA')" class="brand-filter-card bg-slate-800/80 border border-slate-700/60 p-6 rounded-2xl flex flex-col items-center justify-center text-center hover:border-maspion-500 hover:bg-slate-800 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl font-black mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">UCHIDA</h4>
+                    <span class="text-xs text-slate-400 mt-1">Home Appliances</span>
+                </div>
+
+                <!-- Brand Card 4 -->
+                <div onclick="selectBrandFilter('Tivoli')" class="brand-filter-card bg-slate-800/80 border border-slate-700/60 p-6 rounded-2xl flex flex-col items-center justify-center text-center hover:border-maspion-500 hover:bg-slate-800 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-black mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-faucet"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">Tivoli</h4>
+                    <span class="text-xs text-slate-400 mt-1">Building Materials</span>
+                </div>
+
+                <!-- Brand Card 5 -->
+                <div onclick="selectBrandFilter('Bank Maspion')" class="brand-filter-card bg-slate-800/80 border border-slate-700/60 p-6 rounded-2xl flex flex-col items-center justify-center text-center hover:border-maspion-500 hover:bg-slate-800 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-2xl font-black mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">Bank Maspion</h4>
+                    <span class="text-xs text-slate-400 mt-1">Financial Services</span>
+                </div>
+
+                <!-- Brand Card 6 -->
+                <div onclick="selectBrandFilter('DP World Maspion')" class="brand-filter-card bg-slate-800/80 border border-slate-700/60 p-6 rounded-2xl flex flex-col items-center justify-center text-center hover:border-maspion-500 hover:bg-slate-800 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl font-black mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white">DP World Maspion</h4>
+                    <span class="text-xs text-slate-400 mt-1">International Port</span>
+                </div>
+            </div>
+
+            <!-- Interactive Catalog Filter & Product Section Expansion -->
+            <div class="mt-16 bg-slate-800/60 border border-slate-700/70 rounded-3xl p-6 sm:p-8 backdrop-blur-md">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-700/80">
+                    <div>
+                        <span class="text-maspion-400 text-xs font-extrabold uppercase tracking-widest">Katalog Produk Resmi</span>
+                        <h3 class="text-2xl font-bold text-white mt-1 font-heading">Eksplorasi Produk & Layanan Unggulan</h3>
+                    </div>
+
+                    <!-- Category Filter Buttons -->
+                    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 lg:pb-0">
+                        <button onclick="filterProductBrand('all')" id="brand-btn-all" class="prod-brand-btn active bg-maspion-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all shadow-sm">
+                            Semua Brand
+                        </button>
+                        <button onclick="filterProductBrand('Maspion')" id="brand-btn-Maspion" class="prod-brand-btn bg-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all">
+                            Maspion
+                        </button>
+                        <button onclick="filterProductBrand('MAXIM')" id="brand-btn-MAXIM" class="prod-brand-btn bg-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all">
+                            MAXIM
+                        </button>
+                        <button onclick="filterProductBrand('UCHIDA')" id="brand-btn-UCHIDA" class="prod-brand-btn bg-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all">
+                            UCHIDA
+                        </button>
+                        <button onclick="filterProductBrand('Tivoli')" id="brand-btn-Tivoli" class="prod-brand-btn bg-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all">
+                            Tivoli
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Price Range Filter Bar -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-6 border-b border-slate-700/80">
+                    <div class="md:col-span-4">
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
+                            <i class="fa-solid fa-sliders text-maspion-500 mr-1.5"></i> Rentang Harga Produk
+                        </label>
+                        <p class="text-xs text-slate-400">Geser untuk memfilter harga estimasi produk</p>
+                    </div>
+
+                    <div class="md:col-span-8 flex flex-col sm:flex-row items-center gap-4">
+                        <div class="w-full flex-1">
+                            <div class="flex justify-between items-center text-xs font-bold text-white mb-2">
+                                <span>Mulai: <span id="min-price-display" class="text-maspion-400">Rp 0</span></span>
+                                <span>Hingga: <span id="max-price-display" class="text-maspion-400">Rp 2.500.000+</span></span>
+                            </div>
+                            <input type="range" id="price-range" min="50000" max="2500000" step="50000" value="2500000" oninput="updatePriceFilter(this.value)" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-maspion-600">
+                        </div>
+                        <button onclick="resetFilters()" class="w-full sm:w-auto px-4 py-2 bg-slate-700 hover:bg-slate-600 text-xs text-slate-200 rounded-xl font-semibold transition-all whitespace-nowrap flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-rotate-right"></i> Reset Filter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search and Sorting Bar -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6">
+                    <!-- Search Input -->
+                    <div class="relative w-full sm:w-80">
+                        <i class="fa-solid fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="product-search" onkeyup="filterProducts()" placeholder="Cari nama produk (misal: Kompor, Kipas)..." class="w-full pl-9 pr-4 py-2 bg-slate-900/90 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-maspion-500 transition-all">
+                    </div>
+
+                    <!-- Sort Selector -->
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <span class="text-xs text-slate-400 whitespace-nowrap">Urutkan:</span>
+                        <select id="sort-products" onchange="filterProducts()" class="bg-slate-900 border border-slate-700 text-white text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-maspion-500 cursor-pointer">
+                            <option value="featured">Paling Populer</option>
+                            <option value="price-low">Harga: Terendah ke Tertinggi</option>
+                            <option value="price-high">Harga: Tertinggi ke Terendah</option>
+                            <option value="name">Nama Produk A-Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Product Display Grid -->
+                <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                    <!-- Dynamic Product Cards Injected Here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Corporate Media Grid -->
+    <section id="berita" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="text-maspion-700 font-bold text-sm tracking-wider uppercase bg-maspion-50 px-3.5 py-1 rounded-full" data-i18n="news_tag">Kabar Terkini</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 font-heading" data-i18n="news_title">Berita & Kegiatan Perusahaan</h2>
+            </div>
+            <a href="#" class="mt-4 md:mt-0 font-semibold text-maspion-700 hover:text-maspion-800 flex items-center gap-2 group text-sm sm:text-base">
+                <span data-i18n="news_all">Lihat Semua Berita</span>
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- News Card 1 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover-lift flex flex-col">
+                <div class="relative h-48 overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="DPWorld Logistics" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    <span class="absolute top-4 left-4 bg-maspion-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Ekspansi Bisnis</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>12 September 2026</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 hover:text-maspion-700 transition-colors line-clamp-2 mb-2 font-heading">
+                            Pengembangan Terminal Petikemas Modern DPWorld Maspion Gresik Capai Tahap Final
+                        </h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            Proyek strategi infrastruktur logistik senilai jutaan dolar ini siap meningkatkan kapasitas ekspor-impor Jawa Timur ke kancah global.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <button onclick="readNews('Pengembangan Terminal Petikemas DPWorld Maspion')" class="text-xs font-bold text-maspion-700 hover:underline">Baca Selengkapnya &rarr;</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 2 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover-lift flex flex-col">
+                <div class="relative h-48 overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="ESG Green Initiative" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    <span class="absolute top-4 left-4 bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Keberlanjutan</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>28 Agustus 2026</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 hover:text-maspion-700 transition-colors line-clamp-2 mb-2 font-heading">
+                            Maspion Komitmen Kurangi Karton & Plastik Sekali Pakai Melalui Eco-Manufacturing
+                        </h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            Inisiatif hijau terbaru diterapkan pada seluruh lini produksi peralatan rumah tangga untuk mendukung pemeliharaan lingkungan hidup.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <button onclick="readNews('Inisiatif Eco-Manufacturing Maspion Group')" class="text-xs font-bold text-maspion-700 hover:underline">Baca Selengkapnya &rarr;</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- News Card 3 -->
+            <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover-lift flex flex-col">
+                <div class="relative h-48 overflow-hidden bg-slate-100">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80" alt="CSR Award" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    <span class="absolute top-4 left-4 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Penghargaan</span>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>15 Agustus 2026</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 hover:text-maspion-700 transition-colors line-clamp-2 mb-2 font-heading">
+                            Maspion Group Raih Indonesia Outstanding Corporate Brand Excellence Award 2026
+                        </h3>
+                        <p class="text-slate-600 text-sm line-clamp-3">
+                            Apresiasi diberikan atas dedikasi tiada henti dalam membangun kepercayaan merek lokal yang tangguh dan dipercaya masyarakat.
+                        </p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <button onclick="readNews('Penghargaan Brand Excellence Award 2026')" class="text-xs font-bold text-maspion-700 hover:underline">Baca Selengkapnya &rarr;</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer id="kontak" class="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <div class="max-w-7x1 mx-auto px-4 sm:px-6 lg:px-10">
+
+        <!-- Grid utama -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 mb-12">
+
+            <!-- Col 1: Brand Info -->
+            <div class="lg:col-span-4">
+                <a href="#" class="inline-flex items-center gap-3 mb-4 group">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz2G6hABz9QQ8bqqX7w3QshAwjLm5jhxDaVS_yyDfkpxv80ywyFCPx4mg&s=10" alt="Maspion Logo" class="h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                    <div class="flex flex-col group">
+                        <span class="font-heading font-extrabold text-xl text-slate-200 tracking-tight leading-none group-hover:text-maspion-700 transition-colors">MASPION</span>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase mt-0.5">GROUP INDONESIA</span>
+                    </div>
+                </a>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm" data-i18n="footer_about">
+                    Maspion Group adalah salah satu konglomerasi bisnis manufaktur terdepan di Indonesia yang memproduksi berbagai peralatan rumah tangga, bahan bangunan, serta jasa keuangan.
+                </p>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-maspion-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-maspion-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-maspion-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-maspion-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors"><i class="fa-brands fa-youtube text-sm"></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-4 font-heading" data-i18n="footer_col_2">Navigasi Utama</h4>
+                <ul class="space-y-2.5 text-sm">
+                    <li><a href="#tentang" class="hover:text-white transition-colors">Profil Perusahaan</a></li>
+                    <li><a href="#ekosistem" class="hover:text-white transition-colors">Anak Perusahaan</a></li>
+                    <li><a href="#merek" class="hover:text-white transition-colors">Portofolio Brand</a></li>
+                    <li><a href="#berita" class="hover:text-white transition-colors">Kabar & Artikel</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Sertifikasi & Mutu</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Business Sectors -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-4 font-heading" data-i18n="footer_col_2">Sektor Bisnis</h4>
+                <ul class="space-y-2.5 text-sm">
+                    <li><a href="#ekosistem" class="hover:text-white transition-colors">Consumer Appliances</a></li>
+                    <li><a href="#ekosistem" class="hover:text-white transition-colors">Logistik & Pelabuhan</a></li>
+                    <li><a href="#ekosistem" class="hover:text-white transition-colors">Kawasan Industri</a></li>
+                    <li><a href="#ekosistem" class="hover:text-white transition-colors">Perbankan & Keuangan</a></li>
+                    <li><a href="#ekosistem" class="hover:text-white transition-colors">Perdagangan Internasional</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Contact Info -->
+            <div>
+                <h4 class="text-white font-bold text-base mb-4 font-heading" data-i18n="footer_col_3">Kontak Utama</h4>
+                <ul class="space-y-3 text-sm text-slate-400">
+                    <li class="flex items-start gap-2.5">
+                        <i class="fa-solid fa-location-dot text-maspion-500 mt-1"></i>
+                        <span>Jl. Kembang Jepun 38-40, Surabaya 60162, Jawa Timur, Indonesia</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-phone text-maspion-500"></i>
+                        <span>+62 (31) 3531445</span>
+                    </li>
+                    <li class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-envelope text-maspion-500"></i>
+                        <span>info@maspion.com</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+            <p>&copy; 2026 Maspion Group Indonesia. All rights reserved. (Proposed UI Redesign)</p>
+            <div class="flex items-center gap-6">
+                <a href="#" class="hover:text-slate-400">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-slate-400">Syarat & Ketentuan</a>
+                <a href="#" class="hover:text-slate-400">Peta Situs</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Company & Product Detail Modal -->
+    <div id="company-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div id="modal-body">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Overlay Modal -->
+    <div id="search-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-50 flex items-start justify-center pt-20 p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                <h3 class="font-bold text-lg text-slate-900">Pencarian Cepat Anak Perusahaan & Merek</h3>
+                <button onclick="toggleSearchModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="mt-4 relative">
+                <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="global-search-input" onkeyup="globalSearchCompanies()" placeholder="Ketik nama PT, brand, atau produk (misal: Maxim, Kompor, Wajan)..." class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-maspion-600">
+            </div>
+            <div id="search-results-list" class="mt-4 max-h-80 overflow-y-auto space-y-2">
+                <!-- Search results injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Store for Maspion Group Companies
+        const companiesData = [
+            {
+                id: "pt-1",
+                name: "PT Maxim Housewares Indonesia",
+                category: "consumer",
+                catLabel: "Konsumen & Rumah Tangga",
+                icon: "fa-kitchen-set",
+                desc: "Produsen alat masak antilengket terkemuka berlisensi Teflon dengan penyebaran pasar domestik dan ekspor luas.",
+                location: "Sidoarjo, Jawa Timur",
+                established: "1987",
+                keyProducts: ["Maxim Cookware", "Teflon Pan", "Bakeware"],
+                bgBadge: "bg-amber-100 text-amber-800"
+            },
+            {
+                id: "pt-2",
+                name: "PT Bank Maspion Indonesia Tbk",
+                category: "finance",
+                catLabel: "Jasa Keuangan",
+                icon: "fa-building-columns",
+                desc: "Layanan perbankan komersial, UMKM, dan ritel terpercaya dengan jaringan cabang nasional.",
+                location: "Surabaya, Jawa Timur",
+                established: "1989",
+                keyProducts: ["Maspion E-Banking", "Kredit Usaha", "Tabungan"],
+                bgBadge: "bg-blue-100 text-blue-800"
+            },
+            {
+                id: "pt-3",
+                name: "PT DP World Maspion Logistics",
+                category: "industry",
+                catLabel: "Industri & Logistik",
+                icon: "fa-ship",
+                desc: "Kemitraan strategis internasional untuk pengelolaan terminal peti kemas & pusat logistik terpadu.",
+                location: "Gresik, Jawa Timur",
+                established: "2021",
+                keyProducts: ["Container Terminal", "Freight Logistics", "Warehousing"],
+                bgBadge: "bg-purple-100 text-purple-800"
+            },
+            {
+                id: "pt-4",
+                name: "PT Maspion Electronics",
+                category: "consumer",
+                catLabel: "Konsumen & Rumah Tangga",
+                icon: "fa-plug",
+                desc: "Divisi manufaktur alat elektronik rumah tangga seperti kipas angin, setrika, kompor gas, dan panggangan.",
+                location: "Surabaya, Jawa Timur",
+                established: "1975",
+                keyProducts: ["Kipas Angin Maspion", "Setrika", "Kompor Gas"],
+                bgBadge: "bg-red-100 text-red-800"
+            },
+            {
+                id: "pt-5",
+                name: "PT Maspion Industrial Estate",
+                category: "property",
+                catLabel: "Properti & Infrastruktur",
+                icon: "fa-city",
+                desc: "Pengembang dan pengelola kawasan industri terpadu modern lengkap dengan pelabuhan dan sarana energi.",
+                location: "Gresik, Jawa Timur",
+                established: "1995",
+                keyProducts: ["Kawasan Industri", "Kavling Industri", "Seaport Facilities"],
+                bgBadge: "bg-emerald-100 text-emerald-800"
+            },
+            {
+                id: "pt-6",
+                name: "PT Uchida Indonesia",
+                category: "consumer",
+                catLabel: "Konsumen & Rumah Tangga",
+                icon: "fa-wind",
+                desc: "Produsen ceiling fan (kipas angin gantung) dan perlengkapan pendingin ruangan bermutu tinggi.",
+                location: "Surabaya, Jawa Timur",
+                established: "1992",
+                keyProducts: ["Uchida Ceiling Fan", "Air Cooler", "Water Dispenser"],
+                bgBadge: "bg-amber-100 text-amber-800"
+            },
+            {
+                id: "pt-7",
+                name: "PT Maspion Plastic",
+                category: "consumer",
+                catLabel: "Konsumen & Rumah Tangga",
+                icon: "fa-box",
+                desc: "Manufaktur wadah dan perlengkapan plastik rumah tangga, industri packaging, serta furnitur plastik.",
+                location: "Sidoarjo, Jawa Timur",
+                established: "1972",
+                keyProducts: ["Wadah Plastik", "Kontainer", "Laci Plastik"],
+                bgBadge: "bg-red-100 text-red-800"
+            },
+            {
+                id: "pt-8",
+                name: "PT Indal Aluminium Industry Tbk",
+                category: "industry",
+                catLabel: "Industri & Logistik",
+                icon: "fa-industry",
+                desc: "Perusahaan manufaktur ekstrusi aluminium terbesar yang melayani konstruksi, arsitektur, dan ekspor.",
+                location: "Sidoarjo, Jawa Timur",
+                established: "1971",
+                keyProducts: ["Aluminium Extrusion", "Fasad Gedung", "Tangga Aluminium"],
+                bgBadge: "bg-purple-100 text-purple-800"
+            },
+            {
+                id: "pt-9",
+                name: "PT Alumindo Light Metal Industry Tbk",
+                category: "industry",
+                catLabel: "Industri & Logistik",
+                icon: "fa-sheet-plastic",
+                desc: "Produsen lembaran aluminium (*sheet & foil*) terbesar di Asia Tenggara untuk kemasan dan industri.",
+                location: "Sidoarjo, Jawa Timur",
+                established: "1978",
+                keyProducts: ["Aluminium Sheet", "Foil Roll", "Circle Sheet"],
+                bgBadge: "bg-purple-100 text-purple-800"
+            }
+        ];
+
+        // Brand Products & Pricing Dataset
+        const productsData = [
+            {
+                id: "prod-1",
+                brand: "MAXIM",
+                name: "Maxim Neostone Frypan 24cm",
+                price: 185000,
+                priceFormatted: "Rp 185.000",
+                rating: 4.8,
+                image: "https://down-id.img.susercontent.com/file/20cbbe7f4aa3a6c1cbb90f05f687342f.webp",
+                category: "Alat Masak",
+                desc: "Wajan penggorengan anti lengket dengan lapisan granit ekstra tahan gores dan distribusi panas merata.",
+                specs: ["Diameter: 24 cm", "Lapisan: Granite Coating", "Bebas PFOA & PTFO", "Gagang Bakelite Tahan Panas"]
+            },
+            {
+                id: "prod-2",
+                brand: "MAXIM",
+                name: "Maxim Valentino Cookware Set 5 Pcs",
+                price: 425000,
+                priceFormatted: "Rp 425.000",
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80",
+                category: "Set Alat Masak",
+                desc: "Paket perlengkapan dapur lengkap anti lengket Teflon klasik terfavorit untuk keluarga Indonesia.",
+                specs: ["Isi Set: 5 Pcs", "Lapisan Teflon Classic", "Tutup Kaca Tempered", "Panas Merata Sangat Cepat"]
+            },
+            {
+                id: "prod-3",
+                brand: "Maspion",
+                name: "Kipas Angin Maspion Stand Fan 16 Inci",
+                price: 340000,
+                priceFormatted: "Rp 340.000",
+                rating: 4.7,
+                image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/92/MTA-120718261/brd-44261_maspion-stand-fan-16-inch-f-412-s_full01-409fb045.jpg",
+                category: "Elektronik Rumah",
+                desc: "Kipas angin berdiri dengan hembusan angin kencang, motor tahan lama berbahan 100% tembaga murni.",
+                specs: ["Ukuran Baling: 16 Inci", "Daya: 45 Watt", "Fitur Auto Thermofuse", "Garansi Motor 5 Tahun"]
+            },
+            {
+                id: "prod-4",
+                brand: "Maspion",
+                name: "Kompor Gas Maspion Kaca 2 Tungku",
+                price: 520000,
+                priceFormatted: "Rp 520.000",
+                rating: 4.8,
+                image: "https://p16-images-sign-sg.tokopedia-static.net/tos-alisg-i-aphluv4xwc-sg/img/VqbcmM/2020/10/20/d0ab39a1-bd2a-4b0b-8f0e-37ff4d65002b.jpg~tplv-aphluv4xwc-white-pad-v1:1600:1600.jpeg?lk3s=0ccea506&x-expires=1789641160&x-signature=v3PBuGvUoWpGxvo2hxJHR1B99Dk%3D&x-signature-webp=%2FGQWu8TmLyn4tVWfwnsv64V5%2Bj8%3D",
+                category: "Dapur Elektronik",
+                desc: "Kompor gas 2 tungku berlapis tempered glass mewah, mudah dibersihkan dan hemat konsumsi gas.",
+                specs: ["Material: Tempered Glass", "Tungku: Kuningan Asli", "Efisiensi Gas Tinggi", "Anti Gores & Tahan Beban"]
+            },
+            {
+                id: "prod-5",
+                brand: "Maspion",
+                name: "Setrika Listrik Otomatis Maspion HA-110",
+                price: 135000,
+                priceFormatted: "Rp 135.000",
+                rating: 4.9,
+                image: "https://down-id.img.susercontent.com/file/id-11134207-7ra0k-mc1m4wbu75xnce.webp",
+                category: "Elektronik Rumah",
+                desc: "Setrika legendaris paling awet dengan alas anti lengket dan pengatur suhu otomatis presisi tinggi.",
+                specs: ["Daya: 350 Watt", "Alas Anti Lengket Non-Stick", "Pengatur Suhu Otomatis", "Kabel Fleksibel 360 Putaran"]
+            },
+            {
+                id: "prod-6",
+                brand: "UCHIDA",
+                name: "Uchida Ceiling Fan Decorative 52 Inci",
+                price: 1250000,
+                priceFormatted: "Rp 1.250.000",
+                rating: 4.9,
+                image: "https://down-id.img.susercontent.com/file/c9e6296350d39c671ffbab019ec0a0b1.webp",
+                category: "Kipas Langit-Langit",
+                desc: "Kipas gantung dekoratif berdesain klasik elegan dengan lampu hias, memberikan kesejukan dan estetika ruangan.",
+                specs: ["Ukuran Baling: 52 Inci", "Bahan Baling: Kayu Olahan Mewah", "Dilengkapi 4 Lampu Hias", "3 Pilihan Kecepatan Wind"]
+            },
+            {
+                id: "prod-7",
+                brand: "UCHIDA",
+                name: "Uchida Air Cooler Portable 7 Liter",
+                price: 890000,
+                priceFormatted: "Rp 890.000",
+                rating: 4.6,
+                image: "https://down-id.img.susercontent.com/file/id-11134207-81zth-msm4puoju9s168.webp",
+                category: "Pendingin Udara",
+                desc: "Pendingin udara praktis hemat listrik dengan kotak pendingin es (ice pack) dan filter udara anti bakteri.",
+                specs: ["Kapasitas Tangki: 7 Liter", "Daya: 65 Watt Hemat Energi", "Termasuk 2 Ice Pack Free", "Remote Control Interaktif"]
+            },
+            {
+                id: "prod-8",
+                brand: "Tivoli",
+                name: "Tivoli Luxury Brass Kitchen Faucet",
+                price: 760000,
+                priceFormatted: "Rp 760.000",
+                rating: 4.8,
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTPAQAfdP_PalzyvylfJqUkqH-oTwcwsOdV4qqJh2bEySF52Q5KZSSxx1K&s=10",
+                category: "Bahan Bangunan & Kran",
+                desc: "Kran wastafel cuci piring fleksibel berbahan kuningan tebal dilapisi krom mengkilap anti karat.",
+                specs: ["Material: Solid Brass Chrome", "Leher Fleksibel 360", "Cartridge Keramik Anti Bocor", "Garansi Kebocoran 3 Tahun"]
+            }
+        ];
+
+        // State filter variables
+        let selectedBrand = 'all';
+        let maxPriceLimit = 2500000;
+
+        // Filter Product Brand Logic
+        function filterProductBrand(brand) {
+            selectedBrand = brand;
+            
+            document.querySelectorAll('.prod-brand-btn').forEach(btn => {
+                btn.className = "prod-brand-btn bg-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all";
+            });
+
+            const activeBtn = document.getElementById(`brand-btn-${brand}`);
+            if (activeBtn) {
+                activeBtn.className = "prod-brand-btn active bg-maspion-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all shadow-sm";
+            }
+
+            filterProducts();
+        }
+
+        function selectBrandFilter(brandName) {
+            filterProductBrand(brandName);
+            const catalogElem = document.getElementById('product-grid');
+            if (catalogElem) {
+                catalogElem.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Price Filter Update
+        function updatePriceFilter(val) {
+            maxPriceLimit = parseInt(val);
+            document.getElementById('max-price-display').textContent = val >= 2500000 ? "Rp 2.500.000+" : `Rp ${parseInt(val).toLocaleString('id-ID')}`;
+            filterProducts();
+        }
+
+        // Reset Filters
+        function resetFilters() {
+            selectedBrand = 'all';
+            maxPriceLimit = 2500000;
+            document.getElementById('price-range').value = 2500000;
+            document.getElementById('max-price-display').textContent = "Rp 2.500.000+";
+            document.getElementById('product-search').value = "";
+            document.getElementById('sort-products').value = "featured";
+            filterProductBrand('all');
+        }
+
+        // Filter and Render Products Core Engine
+        function filterProducts() {
+            const searchQuery = document.getElementById('product-search').value.toLowerCase();
+            const sortOption = document.getElementById('sort-products').value;
+
+            let filtered = productsData.filter(prod => {
+                const matchBrand = (selectedBrand === 'all') || (prod.brand.toLowerCase() === selectedBrand.toLowerCase());
+                const matchPrice = prod.price <= maxPriceLimit;
+                const matchSearch = prod.name.toLowerCase().includes(searchQuery) || prod.category.toLowerCase().includes(searchQuery);
+
+                return matchBrand && matchPrice && matchSearch;
+            });
+
+            // Sorting
+            if (sortOption === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortOption === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (sortOption === 'name') {
+                filtered.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            renderProductsGrid(filtered);
+        }
+
+        // Render Product Cards
+        function renderProductsGrid(items) {
+            const grid = document.getElementById('product-grid');
+
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-400 bg-slate-900/40 rounded-2xl border border-slate-700/50">
+                        <i class="fa-solid fa-box-open text-4xl mb-3 text-slate-500"></i>
+                        <p class="font-bold text-slate-300">Tidak ada produk yang sesuai filter harga atau kata kunci.</p>
+                        <p class="text-xs text-slate-500 mt-1">Coba tingkatkan rentang harga slider atau pilih brand lain.</p>
+                        <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-maspion-700 text-white rounded-xl text-xs font-bold hover:bg-maspion-800 transition-all">
+                            Reset Semua Filter
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = items.map(prod => `
+                <div class="bg-slate-900/90 border border-slate-700/80 rounded-2xl overflow-hidden hover:border-maspion-500 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-44 overflow-hidden bg-slate-800">
+                            <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-slate-200 text-[10px] font-bold px-2.5 py-1 rounded-full border border-slate-700">
+                                ${prod.brand}
+                            </span>
+                            <span class="absolute top-3 right-3 bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm flex items-center gap-1 border border-amber-500/30">
+                                <i class="fa-solid fa-star text-amber-400"></i> ${prod.rating}
+                            </span>
+                        </div>
+                        <div class="p-4">
+                            <span class="text-[10px] font-semibold text-maspion-400 uppercase tracking-wider">${prod.category}</span>
+                            <h4 class="font-bold text-sm text-white mt-1 group-hover:text-maspion-400 transition-colors line-clamp-2">${prod.name}</h4>
+                            <p class="text-xs text-slate-400 mt-2 line-clamp-2">${prod.desc}</p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0 mt-2 border-t border-slate-800 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 block">Estimasi Harga</span>
+                            <span class="text-sm font-extrabold text-white font-heading">${prod.priceFormatted}</span>
+                        </div>
+                        <button onclick="openProductModal('${prod.id}')" class="w-8 h-8 rounded-xl bg-maspion-700/30 hover:bg-maspion-600 text-maspion-300 hover:text-white flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Product Detail Modal Function
+        function openProductModal(prodId) {
+            const prod = productsData.find(p => p.id === prodId);
+            if (!prod) return;
+
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="space-y-4">
+                    <div class="relative h-56 rounded-2xl overflow-hidden bg-slate-100">
+                        <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-maspion-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                            ${prod.brand}
+                        </span>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-maspion-700 uppercase tracking-wider">${prod.category}</span>
+                            <span class="text-xs font-bold text-amber-500 flex items-center gap-1">
+                                <i class="fa-solid fa-star"></i> ${prod.rating} / 5.0
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-slate-900 font-heading mt-1">${prod.name}</h3>
+                        <p class="text-slate-600 text-sm mt-2 leading-relaxed">${prod.desc}</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block font-medium">Estimasi Harga Eceran Resmi:</span>
+                        <span class="text-2xl font-black text-slate-900 font-heading">${prod.priceFormatted}</span>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Spesifikasi Kunci</h4>
+                        <ul class="space-y-1.5">
+                            ${prod.specs.map(s => `<li class="text-xs sm:text-sm text-slate-700 flex items-center gap-2"><i class="fa-solid fa-check text-maspion-600 text-xs"></i> ${s}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="closeModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-sm transition-colors">
+                            Tutup Detail Produk
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('company-modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        // Language Dictionary
+        const i18n = {
+            id: {
+                nav_about: "Tentang Kami",
+                nav_ecosystem: "Ekosistem Bisnis",
+                nav_brands: "Merek Utama",
+                nav_news: "Berita & Media",
+                nav_contact: "Hubungi Kami",
+                nav_cta: "Eksplor Perusahaan",
+                hero_badge: "Slogan Kebanggaan Indonesia",
+                hero_title_quote: "Cintailah Produk-Produk",
+                hero_subtitle: "Selama lebih dari lima dekade, Maspion Group terus berinovasi memajukan industri manufaktur, perdagangan, properti, dan jasa keuangan nasional.",
+                hero_btn_explore: "Jelajahi Unit Bisnis",
+                hero_btn_about: "Tentang Grup",
+                stat_1: "Pengalaman Industri",
+                stat_2: "Anak Perusahaan Strategic",
+                stat_3: "Tenaga Kerja Profesional",
+                stat_4: "Negara Tujuan Ekspor",
+                section_eco_tag: "Diversifikasi Bisnis",
+                section_eco_title: "Ekosistem Perusahaan Maspion",
+                section_eco_subtitle: "Temukan unit bisnis dan anak perusahaan Maspion Group yang beroperasi secara terintegrasi di berbagai sektor strategis.",
+                cat_all: "Semua Sektor (25+)",
+                cat_consumer: "Konsumen & Rumah Tangga",
+                cat_industry: "Industri & Logistik",
+                cat_property: "Properti & Infrastruktur",
+                cat_finance: "Jasa Keuangan",
+                brand_tag: "Merek Unggulan",
+                brand_title: "Brand Kepercayaan Keluarga",
+                brand_desc: "Produk berkualitas tinggi yang dirancang untuk kebutuhan sehari-hari rumah tangga, industri, dan bisnis.",
+                news_tag: "Kabar Terkini",
+                news_title: "Berita & Kegiatan Perusahaan",
+                news_all: "Lihat Semua Berita",
+                footer_about: "Maspion Group adalah salah satu konglomerasi bisnis manufaktur terdepan di Indonesia yang memproduksi berbagai peralatan rumah tangga, bahan bangunan, serta jasa keuangan.",
+                footer_col_1: "Navigasi Utama",
+                footer_col_2: "Sektor Bisnis",
+                footer_col_3: "Kontak Utama"
+            },
+            en: {
+                nav_about: "About Us",
+                nav_ecosystem: "Business Ecosystem",
+                nav_brands: "Key Brands",
+                nav_news: "News & Media",
+                nav_contact: "Contact Us",
+                nav_cta: "Explore Companies",
+                hero_badge: "Indonesia's Proud Slogan",
+                hero_title_quote: "Love Indonesian",
+                hero_subtitle: "For over five decades, Maspion Group continues to innovate advancing national manufacturing, trade, property, and financial services.",
+                hero_btn_explore: "Explore Business Units",
+                hero_btn_about: "About Group",
+                stat_1: "Years Experience",
+                stat_2: "Strategic Subsidiaries",
+                stat_3: "Professional Workforce",
+                stat_4: "Export Destinations",
+                section_eco_tag: "Business Diversification",
+                section_eco_title: "Maspion Group Ecosystem",
+                section_eco_subtitle: "Discover Maspion Group's integrated business units and subsidiaries operating across key economic sectors.",
+                cat_all: "All Sectors (25+)",
+                cat_consumer: "Consumer Goods & Appliances",
+                cat_industry: "Industry & Logistics",
+                cat_property: "Property & Infrastructure",
+                cat_finance: "Financial Services",
+                brand_tag: "Featured Brands",
+                brand_title: "Brands Families Trust",
+                brand_desc: "High-quality products manufactured for everyday household, industrial, and business needs.",
+                news_tag: "Latest Updates",
+                news_title: "Corporate News & Activities",
+                news_all: "View All News",
+                footer_about: "Maspion Group is one of Indonesia's leading manufacturing conglomerates producing home appliances, building materials, and financial services.",
+                footer_col_1: "Main Navigation",
+                footer_col_2: "Business Sectors",
+                footer_col_3: "Main Contact"
+            }
+        };
+
+        let currentLang = 'id';
+
+        // Switch Language Function
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('lang-id').className = lang === 'id' ? "px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-maspion-700 text-white transition-all" : "px-2.5 py-0.5 text-[11px] font-semibold rounded-full text-slate-400 hover:text-white transition-all";
+            document.getElementById('lang-en').className = lang === 'en' ? "px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-maspion-700 text-white transition-all" : "px-2.5 py-0.5 text-[11px] font-semibold rounded-full text-slate-400 hover:text-white transition-all";
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.textContent = i18n[lang][key];
+                }
+            });
+        }
+
+        // Render Companies Grid
+        function renderCompanyGrid(items) {
+            const grid = document.getElementById('company-grid');
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-400">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-300"></i>
+                        <p class="font-medium">Perusahaan tidak ditemukan dengan kata kunci ini.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = items.map(comp => `
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover-lift flex flex-col justify-between cursor-pointer group" onclick="openModal('${comp.id}')">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-maspion-700 text-xl group-hover:bg-maspion-700 group-hover:text-white transition-colors">
+                                <i class="fa-solid ${comp.icon}"></i>
+                            </div>
+                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full ${comp.bgBadge}">
+                                ${comp.catLabel}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 group-hover:text-maspion-700 transition-colors font-heading mb-2">
+                            ${comp.name}
+                        </h3>
+                        <p class="text-slate-600 text-xs sm:text-sm line-clamp-3 leading-relaxed mb-4">
+                            ${comp.desc}
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+                        <span><i class="fa-solid fa-location-dot text-maspion-600 mr-1"></i> ${comp.location}</span>
+                        <span class="text-maspion-700 font-bold group-hover:underline">Detail &rarr;</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Companies by Category
+        function filterCompanies(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === category) {
+                    btn.className = "filter-btn active bg-maspion-700 text-white px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap shadow-sm transition-all";
+                } else {
+                    btn.className = "filter-btn bg-white text-slate-600 hover:bg-slate-100 px-5 py-2.5 rounded-xl font-medium text-sm whitespace-nowrap border border-slate-200 transition-all";
+                }
+            });
+
+            if (category === 'all') {
+                renderCompanyGrid(companiesData);
+            } else {
+                const filtered = companiesData.filter(c => c.category === category);
+                renderCompanyGrid(filtered);
+            }
+        }
+
+        // Inline Search in Ecosystem Section
+        function searchCompaniesInline() {
+            const query = document.getElementById('ecosystem-search').value.toLowerCase();
+            const filtered = companiesData.filter(c => 
+                c.name.toLowerCase().includes(query) || 
+                c.desc.toLowerCase().includes(query) ||
+                c.catLabel.toLowerCase().includes(query)
+            );
+            renderCompanyGrid(filtered);
+        }
+
+        // Company Detail Modal Functions
+        function openModal(id) {
+            const company = companiesData.find(c => c.id === id);
+            if (!company) return;
+
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-14 h-14 bg-maspion-50 text-maspion-700 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid ${company.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full ${company.bgBadge}">${company.catLabel}</span>
+                        <h3 class="font-extrabold text-xl text-slate-900 mt-1 font-heading">${company.name}</h3>
+                    </div>
+                </div>
+
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                    ${company.desc}
+                </p>
+
+                <div class="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm mb-6">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Lokasi Utama:</span>
+                        <span class="font-semibold text-slate-800">${company.location}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500">Tahun Berdiri:</span>
+                        <span class="font-semibold text-slate-800">${company.established}</span>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-slate-400 mb-2">Produk / Layanan Utama</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${company.keyProducts.map(p => `<span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-lg text-xs font-medium">${p}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="closeModal()" class="w-full bg-maspion-700 hover:bg-maspion-800 text-white font-bold py-2.5 rounded-xl text-sm transition-colors">
+                        Tutup Informasi
+                    </button>
+                </div>
+            `;
+
+            const modal = document.getElementById('company-modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('company-modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Search Overlay Modal
+        function toggleSearchModal() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('global-search-input').focus();
+            }
+        }
+
+        function globalSearchCompanies() {
+            const query = document.getElementById('global-search-input').value.toLowerCase();
+            const resultsContainer = document.getElementById('search-results-list');
+
+            if (!query.trim()) {
+                resultsContainer.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">Ketik untuk mulai mencari...</p>`;
+                return;
+            }
+
+            const companyMatches = companiesData.filter(c => 
+                c.name.toLowerCase().includes(query) || 
+                c.desc.toLowerCase().includes(query)
+            );
+
+            const productMatches = productsData.filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                p.brand.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query)
+            );
+
+            if (companyMatches.length === 0 && productMatches.length === 0) {
+                resultsContainer.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">Tidak ada hasil yang cocok.</p>`;
+            } else {
+                let html = '';
+                if (companyMatches.length > 0) {
+                    html += `<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pt-2">Anak Perusahaan</p>`;
+                    html += companyMatches.map(c => `
+                        <div onclick="toggleSearchModal(); openModal('${c.id}')" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-xl cursor-pointer transition-colors flex items-center justify-between">
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900">${c.name}</h4>
+                                <p class="text-xs text-slate-500">${c.catLabel}</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                        </div>
+                    `).join('');
+                }
+
+                if (productMatches.length > 0) {
+                    html += `<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pt-2">Katalog Produk (${productMatches.length})</p>`;
+                    html += productMatches.map(p => `
+                        <div onclick="toggleSearchModal(); openProductModal('${p.id}')" class="p-3 bg-slate-50 hover:bg-slate-100 rounded-xl cursor-pointer transition-colors flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <img src="${p.image}" class="w-10 h-10 rounded-lg object-cover">
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-900">${p.name}</h4>
+                                    <p class="text-xs text-slate-500">${p.brand} • <span class="font-semibold text-maspion-700">${p.priceFormatted}</span></p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                        </div>
+                    `).join('');
+                }
+
+                resultsContainer.innerHTML = html;
+            }
+        }
+
+        // Read News Placeholder Alert substitute
+        function readNews(title) {
+            openModalCustom("Artikel Berita", title, "Konten berita lengkap sedang dimuat dari server pusat Maspion Group.");
+        }
+
+        function openModalCustom(header, title, text) {
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <div class="text-center py-4">
+                    <span class="text-xs font-bold text-maspion-700 uppercase tracking-widest bg-maspion-50 px-3 py-1 rounded-full">${header}</span>
+                    <h3 class="font-extrabold text-xl text-slate-900 mt-3 font-heading">${title}</h3>
+                    <p class="text-slate-600 text-sm mt-3 leading-relaxed">${text}</p>
+                    <button onclick="closeModal()" class="mt-6 bg-slate-900 text-white font-bold px-6 py-2.5 rounded-xl text-sm">
+                        Mengerti
+                    </button>
+                </div>
+            `;
+            const modal = document.getElementById('company-modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Initialize App on DOM Content Loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCompanyGrid(companiesData);
+            filterProducts();
+        });
+    </script>
+</body>
+</html>
